@@ -318,12 +318,12 @@ function handleSearchInput(query) {
 }
 
 /* ============================================================================
-   FLOATING WHATSAPP CHAT WIDGET INJECTOR (+92 349 5302487)
+    FLOATING WHATSAPP CHAT WIDGET INJECTOR (+92 327 5363509)
    ============================================================================ */
 function initWhatsAppWidget() {
     if (document.getElementById('dzWhatsAppFloat')) return;
 
-    const phoneNumber = "923495302487";
+    const phoneNumber = "923275363509";
     const message = encodeURIComponent("Hello Daud Fabrics, I would like to inquire about your products.");
     const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
