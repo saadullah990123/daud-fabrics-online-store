@@ -1,0 +1,1229 @@
+﻿/* ============================================================================
+   Daud Fabrics — MAIN DESIGN SYSTEM & CUSTOM STYLESHEET
+   FILE: styles/main-custom.css  (was formerly css/daud-custom.css)
+   ============================================================================
+
+   HOW THIS FILE IS ORGANIZED:
+   Section 1  — Global reset & base styles (body, links, container)
+   Section 2  — Reusable Product Cards (grid, card, image, price, button)
+   Section 3  — Toast Notification popup system
+   Section 4  — Product Detail page layout (2-column: image left, info right)
+   Section 5  — Description & Customer Reviews section
+   Section 6  — Header & Navigation overrides
+   Section 7  — Announcement bar, sticky header, logo, nav menu, action icons
+   Section 8  — Cart badge, Mobile nav, Gents hero banner
+
+   COLOR PALETTE (edit these CSS variables to retheme the entire site):
+   --dz-primary:      #121619  → Obsidian Black (titles, buttons, header)
+   --dz-accent:       #c59b27  → Elegant Gold (badges, highlights, hover)
+   --dz-accent-hover: #a37f1d  → Darker Gold (for hover states)
+   --dz-secondary:    #4a5568  → Slate grey (body text, descriptions)
+   --dz-light-bg:     #f8f9fa  → Warm off-white background
+   --dz-border:       #e2e8f0  → Subtle light grey borders
+
+   TO CHANGE A COLOR SITE-WIDE: edit its value in the :root block below.
+   ============================================================================ */
+
+:root {
+    --dz-primary: #121619;          /* Obsidian Black for primary titles */
+    --dz-accent: #c59b27;           /* Elegant Gold accent */
+    --dz-accent-hover: #a37f1d;     /* Darker Gold on hover */
+    --dz-secondary: #4a5568;        /* Soft slate for body text */
+    --dz-light-bg: #f8f9fa;         /* Warm background tint */
+    --dz-border: #e2e8f0;           /* Clean subtle border */
+    --dz-shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --dz-shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+    --dz-shadow-lg: 0 16px 36px rgba(0,0,0,0.12);
+    --dz-radius: 8px;
+    --dz-font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ----------------------------------------------------------------------------
+   1. GLOBAL & RESET OVERRIDES
+   ---------------------------------------------------------------------------- */
+body {
+    font-family: var(--dz-font-main);
+    color: var(--dz-primary);
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Container limits */
+.dz-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Section Header */
+.dz-section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dz-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--dz-primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.dz-section-subtitle {
+    font-size: 1rem;
+    color: var(--dz-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------------------
+   2. REUSABLE PRODUCT CARDS
+   ---------------------------------------------------------------------------- */
+.dz-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1100px) {
+    .dz-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dz-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dz-product-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.dz-card {
+    background: #ffffff;
+    border: 1px solid var(--dz-border);
+    border-radius: var(--dz-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--dz-shadow-md);
+}
+
+.dz-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 130%; /* 4:3 Portrait aspect ratio */
+    overflow: hidden;
+    background: #f1f3f5;
+}
+
+.dz-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.dz-card:hover .dz-card-image {
+    transform: scale(1.05);
+}
+
+.dz-badge-discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #e53e3e;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(229, 62, 62, 0.3);
+}
+
+.dz-card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.dz-card-category {
+    font-size: 0.75rem;
+    color: var(--dz-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.dz-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dz-primary);
+    line-height: 1.35;
+    margin: 0 0 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.7em;
+}
+
+.dz-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: #f59e0b;
+    margin-bottom: 12px;
+}
+
+.dz-card-rating span {
+    color: var(--dz-secondary);
+    font-size: 0.75rem;
+    margin-left: 4px;
+}
+
+.dz-card-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 16px;
+    margin-top: auto;
+}
+
+.dz-card-price-current {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dz-primary);
+}
+
+.dz-card-price-old {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-decoration: line-through;
+}
+
+.dz-btn-add-cart {
+    width: 100%;
+    background: var(--dz-primary);
+    color: #ffffff;
+    border: none;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dz-btn-add-cart:hover {
+    background: var(--dz-accent);
+    color: #ffffff;
+}
+
+.dz-btn-add-cart:active {
+    transform: scale(0.98);
+}
+
+/* ----------------------------------------------------------------------------
+   3. TOAST NOTIFICATION SYSTEM (4-Second Duration)
+   ---------------------------------------------------------------------------- */
+#dz-toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.dz-toast {
+    pointer-events: auto;
+    background: #121619;
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 300px;
+    max-width: 420px;
+    border-left: 4px solid var(--dz-accent);
+    animation: dzToastSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.dz-toast.hiding {
+    animation: dzToastSlideOut 0.3s forwards ease-in;
+}
+
+.dz-toast-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--dz-accent);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.dz-toast-content {
+    flex-grow: 1;
+}
+
+.dz-toast-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.dz-toast-msg {
+    font-size: 0.85rem;
+    color: #cbd5e0;
+}
+
+.dz-toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--dz-accent);
+    width: 100%;
+    animation: dzToastProgress 4s linear forwards;
+}
+
+@keyframes dzToastSlideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes dzToastSlideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes dzToastProgress {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* Mobile Toast positioning */
+@media (max-width: 480px) {
+    #dz-toast-container {
+        bottom: 12px;
+        right: 12px;
+        left: 12px;
+    }
+    .dz-toast {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+/* ----------------------------------------------------------------------------
+   4. PRODUCT DETAIL PAGE STYLING
+   ---------------------------------------------------------------------------- */
+.dz-detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+@media (max-width: 900px) {
+    .dz-detail-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Left Image Area */
+.dz-detail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dz-detail-main-img-box {
+    width: 100%;
+    border-radius: var(--dz-radius);
+    overflow: hidden;
+    border: 1px solid var(--dz-border);
+    background: #f8f9fa;
+}
+
+.dz-detail-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.dz-detail-thumbs {
+    display: flex;
+    gap: 12px;
+}
+
+.dz-thumb-item {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: border-color 0.2s ease;
+}
+
+.dz-thumb-item.active,
+.dz-thumb-item:hover {
+    border-color: var(--dz-accent);
+}
+
+.dz-thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right Product Info Area */
+.dz-detail-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.dz-detail-category {
+    font-size: 0.85rem;
+    color: var(--dz-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.dz-detail-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 16px 0;
+    color: var(--dz-primary);
+}
+
+@media (max-width: 480px) {
+    .dz-detail-title {
+        font-size: 1.6rem;
+    }
+}
+
+.dz-detail-price-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dz-detail-price-current {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--dz-primary);
+}
+
+.dz-detail-price-old {
+    font-size: 1.2rem;
+    color: #a0aec0;
+    text-decoration: line-through;
+}
+
+.dz-detail-stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #def7ec;
+    color: #03543f;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+}
+
+/* Quantity & Action Buttons */
+.dz-detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.dz-qty-picker {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--dz-border);
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.dz-qty-btn {
+    background: #f8f9fa;
+    border: none;
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dz-qty-btn:hover {
+    background: #e2e8f0;
+}
+
+.dz-qty-input {
+    width: 50px;
+    height: 44px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.dz-btn-group {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 480px) {
+    .dz-btn-group {
+        flex-direction: column;
+    }
+}
+
+.dz-btn-primary {
+    flex: 1;
+    background: var(--dz-primary);
+    color: #ffffff;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-align: center;
+}
+
+.dz-btn-primary:hover {
+    background: var(--dz-accent);
+}
+
+.dz-btn-secondary {
+    flex: 1;
+    background: #ffffff;
+    color: var(--dz-primary);
+    border: 2px solid var(--dz-primary);
+    padding: 16px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.dz-btn-secondary:hover {
+    background: var(--dz-primary);
+    color: #ffffff;
+}
+
+/* ----------------------------------------------------------------------------
+   5. DESCRIPTION & REVIEWS SECTION
+   ---------------------------------------------------------------------------- */
+.dz-info-section {
+    background: var(--dz-light-bg);
+    border-radius: var(--dz-radius);
+    padding: 32px;
+    margin-bottom: 48px;
+}
+
+.dz-info-section h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: var(--dz-primary);
+    border-bottom: 2px solid var(--dz-accent);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.dz-details-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.dz-details-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--dz-secondary);
+}
+
+.dz-details-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--dz-accent);
+    font-weight: bold;
+}
+
+/* Customer Reviews */
+.dz-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+    .dz-reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dz-reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dz-review-card {
+    background: #ffffff;
+    border: 1px solid var(--dz-border);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--dz-shadow-sm);
+}
+
+.dz-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.dz-review-author {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--dz-primary);
+}
+
+.dz-review-verified {
+    font-size: 0.75rem;
+    color: #2b6cb0;
+    background: #ebf8ff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.dz-review-stars {
+    color: #f59e0b;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.dz-review-text {
+    font-size: 0.9rem;
+    color: var(--dz-secondary);
+    line-height: 1.5;
+}
+
+.dz-review-date {
+    font-size: 0.75rem;
+    color: #a0aec0;
+    margin-top: 12px;
+}
+
+/* ----------------------------------------------------------------------------
+   6. HEADER & NAV OVERRIDES
+   ---------------------------------------------------------------------------- */
+.dz-nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--dz-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ----------------------------------------------------------------------------
+   7. PROTOTYPE HEADER & TOP ANNOUNCEMENT BAR (Khaadi Style)
+   ---------------------------------------------------------------------------- */
+.dz-top-announcement-bar {
+    background: #b85d53; /* Terracotta Red / Warm Copper */
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px 16px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.dz-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--dz-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--dz-shadow-sm);
+}
+
+.dz-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+}
+
+.dz-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--dz-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dz-nav-menu {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.dz-nav-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dz-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.dz-nav-link:hover, .dz-nav-link.active {
+    color: var(--dz-accent);
+}
+
+.dz-nav-link.dz-sale-link {
+    color: #e55829; /* Highlighted Sale Orange */
+}
+
+.dz-nav-link.dz-sale-link:hover {
+    color: #c0392b;
+}
+
+.dz-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.dz-action-icon {
+    color: var(--dz-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.dz-action-icon:hover {
+    color: var(--dz-accent);
+    background: var(--dz-light-bg);
+}
+
+.dz-nav-logo img,
+.dz-logo img,
+.site-header__logo img,
+.site-header__logo-link img {
+    width: 50px;
+    height: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--dz-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    vertical-align: middle;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dz-nav-logo:hover img,
+.dz-logo:hover img,
+.site-header__logo:hover img {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 4px 14px rgba(197, 155, 39, 0.35);
+}
+
+/* ------------------------------------------------------------------
+   LEGACY SHOPIFY HEADER OVERRIDE
+   Hides the original Shopify announcement bar and header that
+   came with the downloaded template. Our custom header replaces them.
+   Do NOT remove these rules or the old Shopify header will reappear.
+------------------------------------------------------------------ */
+#shopify-section-announcement-bar-slide,
+#shopify-section-header {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .dz-nav-menu {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: var(--dz-shadow-md);
+        border-bottom: 1px solid var(--dz-border);
+    }
+    .dz-nav-menu.show {
+        display: flex !important;
+    }
+    .dz-mobile-toggle {
+        display: block !important;
+    }
+}
+
+
+
+
+
+
+/* ------------------------------------------------------------------
+   CART COUNT BADGE
+   The small gold circular number badge on the cart icon in the header.
+   Its text (the number) is updated dynamically by updateCartBadge()
+   in scripts/app.js whenever items are added/removed from the cart.
+------------------------------------------------------------------ */
+.dz-cart-count-badge {
+    background: var(--dz-accent);   /* Gold background */
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50%;             /* Makes it a perfect circle */
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+/* ------------------------------------------------------------------
+   COLLECTION PAGE HERO BANNER
+   The dark gradient banner at the top of collection pages
+   (gents-collection.html, womens-collection.html, summer-collection.html).
+   Shows the collection title and a short description.
+   TO CHANGE BACKGROUND COLOR: edit the gradient colors below.
+------------------------------------------------------------------ */
+.dz-gents-hero {
+    background: linear-gradient(135deg, #121619 0%, #2d3748 100%); /* Dark obsidian gradient */
+    color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+/* Large heading inside the collection hero banner */
+.dz-gents-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+/* Descriptive subtitle below the heading */
+.dz-gents-hero p {
+    font-size: 1.1rem;
+    color: #cbd5e0;       /* Light grey for readable text on dark background */
+    max-width: 650px;
+    margin: 0 auto;       /* Centers the text block horizontally */
+}
+
+/* ----------------------------------------------------------------------------
+   HERO BUTTONS FIX & BEAUTIFICATION
+   ---------------------------------------------------------------------------- */
+.dz-hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dz-accent) !important;
+    color: #121619 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    padding: 16px 36px !important;
+    border-radius: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border: 2px solid var(--dz-accent) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 14px rgba(197, 155, 39, 0.4) !important;
+    text-decoration: none !important;
+}
+
+.dz-hero-btn-primary:hover {
+    background: #e0b02d !important;
+    border-color: #e0b02d !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(197, 155, 39, 0.6) !important;
+}
+
+.dz-hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 16px 36px !important;
+    border-radius: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border: 2px solid #ffffff !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.dz-hero-btn-secondary:hover {
+    background: #ffffff !important;
+    color: #121619 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ----------------------------------------------------------------------------
+   INTERACTIVE LIVE SEARCH MODAL OVERLAY STYLES
+   ---------------------------------------------------------------------------- */
+.dz-search-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: rgba(18, 22, 25, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 60px 20px 40px 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dz-search-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dz-search-modal-container {
+    width: 100%;
+    max-width: 840px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dz-search-modal-overlay.active .dz-search-modal-container {
+    transform: translateY(0);
+}
+
+.dz-search-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f1f5f9;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #475569;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.dz-search-modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.dz-search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.dz-search-input-icon {
+    position: absolute;
+    left: 16px;
+    color: var(--dz-accent);
+    pointer-events: none;
+}
+
+.dz-search-input {
+    width: 100%;
+    padding: 16px 20px 16px 52px;
+    font-size: 1.15rem;
+    font-family: inherit;
+    border: 2px solid var(--dz-border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.dz-search-input:focus {
+    border-color: var(--dz-accent);
+    box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.15);
+}
+
+.dz-search-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dz-search-tag-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dz-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dz-search-tag-btn {
+    background: #f8fafc;
+    border: 1px solid var(--dz-border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--dz-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dz-search-tag-btn:hover {
+    background: var(--dz-accent);
+    color: #ffffff;
+    border-color: var(--dz-accent);
+}
+
+.dz-search-results-container {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 4px;
+}
+
+.dz-search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 600px) {
+    .dz-search-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dz-search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border: 1px solid var(--dz-border);
+    border-radius: 8px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+}
+
+.dz-search-result-item:hover {
+    background: #f8fafc;
+    border-color: var(--dz-accent);
+}
+
+.dz-search-result-thumb {
+    width: 64px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.dz-search-result-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.dz-search-result-cat {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--dz-accent);
+    text-transform: uppercase;
+}
+
+.dz-search-result-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--dz-primary);
+    margin: 2px 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dz-search-result-price {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--dz-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   STICKY FLOATING WHATSAPP BUTTON WIDGET (+92 349 5302487)
+   ---------------------------------------------------------------------------- */
+.dz-whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #ffffff !important;
+    padding: 12px 20px 12px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: dz-wa-pulse 2.5s infinite;
+}
+
+.dz-whatsapp-float:hover {
+    background: #20ba5a;
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+    color: #ffffff !important;
+}
+
+.dz-whatsapp-icon {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+    flex-shrink: 0;
+}
+
+@keyframes dz-wa-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@media (max-width: 480px) {
+    .dz-whatsapp-float span {
+        display: none;
+    }
+    .dz-whatsapp-float {
+        padding: 14px;
+        border-radius: 50%;
+        bottom: 20px;
+        left: 20px;
+    }
+}

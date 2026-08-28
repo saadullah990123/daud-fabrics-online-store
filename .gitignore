@@ -1,0 +1,11 @@
+# Secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Dependencies
+node_modules/

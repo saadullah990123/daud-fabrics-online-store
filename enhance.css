@@ -1,0 +1,403 @@
+/* =====================================================================
+   ENHANCEMENTS.CSS
+   Additive stylesheet — load this AFTER your existing CSS files.
+   Nothing here overwrites your colors, fonts, or layout choices.
+   It only adds: animations, WhatsApp button, order tracking UI,
+   and small responsive safety nets.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Site-wide font guarantee: mens.css / women.css never set a body font,
+   so without this those two pages silently fall back to the browser's
+   default serif font. This makes every page match the Poppins look
+   your other pages already use — icon fonts (Font Awesome) are untouched
+   since those set their own font-family with higher specificity. */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* ---------- 1. Global smoothness & safety nets ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden; /* stops any stray element from causing horizontal scroll on mobile */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- 2. Scroll-reveal animation utility ---------- */
+/* Add data-animate="up" (or "fade" / "left" / "right") to any element.
+   enhancements.js toggles the .in-view class when it scrolls into frame. */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+[data-animate="up"] {
+  transform: translateY(28px);
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+[data-animate="left"] {
+  transform: translateX(-32px);
+}
+
+[data-animate="right"] {
+  transform: translateX(32px);
+}
+
+[data-animate].in-view {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- 3. Product card / image micro-interactions ---------- */
+/* Layered gently on top of your existing .product-card / .img-box rules */
+.product-card,
+.gallery-item {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.product-card:hover,
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+}
+
+.img-box img,
+.product-card img {
+  transition: transform 0.5s ease;
+}
+
+/* Buttons: consistent tactile hover/press feedback across the whole site */
+button,
+.add-to-cart-btn,
+.cod-btn,
+.add-cart-btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease,
+    background-color 0.18s ease;
+}
+
+button:hover,
+.add-to-cart-btn:hover,
+.cod-btn:hover,
+.add-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+button:active,
+.add-to-cart-btn:active,
+.cod-btn:active,
+.add-cart-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Small "added to cart" pulse, triggered by JS adding .pulse briefly */
+@keyframes enh-pulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.enh-pulse {
+  animation: enh-pulse 0.35s ease;
+}
+
+/* ---------- 4. WhatsApp floating button ---------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  text-decoration: none;
+  animation: enh-float-in 0.6s ease 0.4s backwards, enh-whatsapp-pulse 2.4s ease-in-out infinite;
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-tooltip {
+  position: fixed;
+  bottom: 34px;
+  right: 92px;
+  background: #111;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+}
+
+.whatsapp-float:hover + .whatsapp-tooltip,
+.whatsapp-tooltip.show {
+  opacity: 1;
+}
+
+@keyframes enh-whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  50% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes enh-float-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    right: 16px;
+  }
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+  .whatsapp-tooltip {
+    display: none; /* keeps thumb area clean on small phones */
+  }
+}
+
+/* ---------- 5. Track Order page ---------- */
+.track-order-section {
+  max-width: 560px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.track-order-section h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.track-order-section p.subtext {
+  color: #666;
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+
+.track-order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.track-order-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.track-order-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.track-order-form input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.track-order-form button {
+  margin-top: 6px;
+  padding: 13px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.track-order-result {
+  margin-top: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  display: none;
+}
+
+.track-order-result.show {
+  display: block;
+  animation: enh-float-in 0.4s ease;
+}
+
+.track-order-result-header {
+  background: #111;
+  color: #fff;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.track-order-steps {
+  list-style: none;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.track-order-steps li {
+  position: relative;
+  padding-left: 34px;
+  padding-bottom: 26px;
+  font-size: 14px;
+  color: #999;
+}
+
+.track-order-steps li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  border: 2px solid #ddd;
+}
+
+.track-order-steps li::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 14px;
+  bottom: 0;
+  width: 2px;
+  background: #eee;
+}
+
+.track-order-steps li:last-child::after {
+  display: none;
+}
+
+.track-order-steps li.done {
+  color: #111;
+  font-weight: 600;
+}
+
+.track-order-steps li.done::before {
+  background: #25d366;
+  border-color: #25d366;
+}
+
+.track-order-steps li.done::after {
+  background: #25d366;
+}
+
+.track-order-empty {
+  margin-top: 20px;
+  padding: 16px;
+  background: #fff4f4;
+  border: 1px solid #ffd6d6;
+  color: #a30000;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+}
+
+.track-order-empty.show {
+  display: block;
+}
+
+/* ---------- 6. Nav link for Track Order (matches your existing nav-list styling) ---------- */
+.nav-list li a.track-order-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---------- 7. Broad responsive safety net ---------- */
+/* Keeps any wide fixed-width blocks from breaking layout on small phones,
+   without touching your existing breakpoints/design decisions. */
+@media screen and (max-width: 480px) {
+  .track-order-section {
+    margin: 32px auto;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

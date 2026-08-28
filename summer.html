@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Collection 2026 - Daud Fabrics</title>
+    <meta name="description" content="Explore summer lawn collection 2026 at Daud Fabrics. Fresh pastel prints and light cotton lawn suits.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="enhance.css">
+    <link rel="stylesheet" href="css/daud-custom.css">
+
+    <style>
+        .dz-header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--dz-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--dz-shadow-sm);
+        }
+        .dz-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+        .dz-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dz-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dz-logo img {
+            height: 48px;
+            width: auto;
+        }
+        .dz-nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .dz-nav-link {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dz-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 0;
+            position: relative;
+        }
+        .dz-nav-link:hover, .dz-nav-link.active {
+            color: var(--dz-accent);
+        }
+        .dz-nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--dz-accent);
+        }
+        .dz-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .dz-cart-icon-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 16px;
+            background: var(--dz-light-bg);
+            border-radius: 20px;
+            border: 1px solid var(--dz-border);
+        }
+        @media (max-width: 900px) {
+            .dz-nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #ffffff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--dz-shadow-md);
+                border-bottom: 1px solid var(--dz-border);
+            }
+            .dz-nav-menu.show {
+                display: flex;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <div class="dz-top-announcement-bar">
+        ✨ FREE SHIPPING NATIONWIDE ON ALL ORDERS OVER RS. 3,000 | Daud Fabrics OFFICIAL
+    </div>
+
+    <header class="dz-header">
+        <div class="dz-container dz-header-inner">
+            <a href="index.html" class="dz-logo">
+                <img src="logo1.jpeg" alt="Daud Fabrics Logo">
+                <span>Daud Fabrics</span>
+            </a>
+
+            <button type="button" class="dz-mobile-toggle" id="dzResponsiveMenuToggle" aria-label="Open menu" aria-controls="dzNavMenu" aria-expanded="false" onclick="toggleMobileNav()">☰</button>
+
+            <nav>
+                <ul class="dz-nav-menu" id="dzNavMenu">
+                    <li><a href="index.html" class="dz-nav-link">NEW IN</a></li>
+                    <li><a href="gents.html" class="dz-nav-link">GENTS / MEN'S</a></li>
+                    <li><a href="womens.html" class="dz-nav-link">WOMEN'S</a></li>
+                    <li><a href="summer.html" class="dz-nav-link active">SUMMER FABRICS</a></li>
+                    <li><a href="gents.html" class="dz-nav-link dz-sale-link">SALE</a></li>
+                    <li><a href="contact.html" class="dz-nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="dz-header-actions">
+                <!-- Interactive Search Button -->
+                <button type="button" onclick="openSearchModal()" class="dz-action-icon" aria-label="Search" title="Search Store" style="background:none; border:none; cursor:pointer;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
+                <a href="cart.html" class="dz-action-icon" aria-label="Wishlist" title="Wishlist">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </a>
+                <a href="account-dashboard.html" class="dz-action-icon" aria-label="Account" title="Account Dashboard">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </a>
+                <a href="cart.html" class="dz-cart-icon-btn" title="Bag">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span class="dz-cart-count-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dz-container" style="margin-top: 30px;">
+        <section class="dz-gents-hero" style="background: linear-gradient(135deg, #d69e2e 0%, #744210 100%);">
+            <h1>Summer Lawn Edition 2026</h1>
+            <p>Breezy cotton lawn fabrics, delicate thread embroideries, and summer pastel prints by Daud Fabrics.</p>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <div class="dz-product-grid" id="dzSummerGrid">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--dz-primary); color: #ffffff; padding: 60px 0 20px 0; margin-top: 60px;">
+        <div class="dz-container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="color: var(--dz-accent); font-size: 1.4rem; font-weight: 800; margin-top: 0;">Daud Fabrics</h3>
+                    <p style="color: #a0aec0; font-size: 0.9rem; line-height: 1.6;">
+                        Daud Fabrics is your premier clothing destination for high quality unstitched lawn, luxury Gents suitings, and seasonal festive collections.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 0.9rem; color: #cbd5e0;">
+                        <li><a href="index.html" style="color: inherit;">Home</a></li>
+                        <li><a href="gents.html" style="color: inherit;">Gents Collection</a></li>
+                        <li><a href="womens.html" style="color: inherit;">Women's Collection</a></li>
+                        <li><a href="summer.html" style="color: inherit;">Summer Lawn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Customer Care</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 0.9rem; color: #cbd5e0;">
+                        <li><a href="contact.html" style="color: inherit;">Contact Us</a></li>
+                        <li><a href="cart.html" style="color: inherit;">My Shopping Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Newsletter</h4>
+                    <p style="color: #a0aec0; font-size: 0.85rem;">Subscribe to get updates on new arrivals.</p>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="email" placeholder="Your email..." style="padding: 10px; border-radius: 4px; border: none; font-size: 0.9rem; flex-grow: 1;">
+                        <button style="background: var(--dz-accent); color: #fff; border: none; padding: 10px 16px; border-radius: 4px; font-weight: bold; cursor: pointer;">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #2d3748; padding-top: 20px; text-align: center; font-size: 0.85rem; color: #a0aec0;">
+                © 2026 <strong>Daud Fabrics</strong>. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        function toggleMobileNav() {
+            const menu=document.getElementById('dzNavMenu'); const btn=document.getElementById('dzResponsiveMenuToggle'); const open=menu.classList.toggle('show'); if(btn){btn.setAttribute('aria-expanded',String(open));btn.setAttribute('aria-label',open?'Close menu':'Open menu');}
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const summerProducts = getProductsByCategory('Summer');
+            document.getElementById('dzSummerGrid').innerHTML = summerProducts.map(p => createProductCardHTML(p)).join('');
+        });
+    </script>
+</body>
+</html>

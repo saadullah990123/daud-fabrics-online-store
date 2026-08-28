@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daud Fabrics - Official E-Commerce Store</title>
+    <meta name="description" content="Welcome to Daud Fabrics. Explore luxury Gents suitings, unstitched lawn, 3PC embroidered suits, and summer lawn collections.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="enhance.css">
+    <link rel="stylesheet" href="css/daud-custom.css">
+
+    <style>
+        .dz-hero-slider {
+            position: relative;
+            width: 100%;
+            min-height: 520px;
+            background: linear-gradient(135deg, rgba(18, 22, 25, 0.75) 0%, rgba(45, 55, 72, 0.6) 100%), url('images/banner-2-new_jpg.webp') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        .dz-hero-content {
+            max-width: 800px;
+        }
+
+        .dz-hero-subtitle {
+            color: var(--dz-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .dz-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 0 0 20px 0;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .dz-hero-text {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .dz-hero-btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .dz-hero-slider {
+                min-height: 420px;
+                padding: 40px 16px;
+            }
+            .dz-hero-title {
+                font-size: 2.2rem;
+            }
+            .dz-hero-btn-group {
+                flex-direction: column;
+            }
+        }
+
+        .dz-values-bar {
+            background: var(--dz-light-bg);
+            border-top: 1px solid var(--dz-border);
+            border-bottom: 1px solid var(--dz-border);
+            padding: 30px 0;
+            margin-bottom: 60px;
+        }
+
+        .dz-values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        @media (max-width: 850px) {
+            .dz-values-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dz-values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .dz-value-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dz-value-icon {
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--dz-shadow-sm);
+            color: var(--dz-accent);
+        }
+
+        .dz-value-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dz-primary);
+            margin: 0;
+        }
+
+        .dz-value-desc {
+            font-size: 0.85rem;
+            color: var(--dz-secondary);
+            margin: 0;
+        }
+
+        .dz-banner-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .dz-banner-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .dz-split-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 340px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 32px;
+            box-sizing: border-box;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .dz-split-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 100%);
+        }
+
+        .dz-split-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .dz-split-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            color: #ffffff;
+        }
+
+        .dz-split-subtitle {
+            font-size: 0.95rem;
+            color: var(--dz-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <div class="dz-top-announcement-bar">
+        ✨ FREE SHIPPING NATIONWIDE ON ALL ORDERS OVER RS. 3,000 | DAUD FABRICS OFFICIAL
+    </div>
+
+    <header class="dz-header">
+        <div class="dz-container dz-header-inner">
+            <a href="index.html" class="dz-logo">
+                <img src="logo1.jpeg" alt="Daud Fabrics Logo">
+                <span>Daud Fabrics</span>
+            </a>
+
+            <button type="button" class="dz-mobile-toggle" id="dzResponsiveMenuToggle" aria-label="Open menu" aria-controls="dzNavMenu" aria-expanded="false" onclick="toggleMobileNav()">☰</button>
+
+            <nav>
+                <ul class="dz-nav-menu" id="dzNavMenu">
+                    <li><a href="index.html" class="dz-nav-link active">NEW IN</a></li>
+                    <li><a href="gents.html" class="dz-nav-link">GENTS / MEN'S</a></li>
+                    <li><a href="womens.html" class="dz-nav-link">WOMEN'S</a></li>
+                    <li><a href="summer.html" class="dz-nav-link">SUMMER FABRICS</a></li>
+                    <li><a href="gents.html" class="dz-nav-link dz-sale-link">SALE</a></li>
+                    <li><a href="contact.html" class="dz-nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="dz-header-actions">
+                <!-- Interactive Search Button -->
+                <button type="button" onclick="openSearchModal()" class="dz-action-icon" aria-label="Search" title="Search Store" style="background:none; border:none; cursor:pointer;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
+                <a href="cart.html" class="dz-action-icon" aria-label="Wishlist" title="Wishlist">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </a>
+                <a href="account-dashboard.html" class="dz-action-icon" aria-label="Account" title="Account Dashboard">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </a>
+                <a href="cart.html" class="dz-cart-icon-btn" title="Bag">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span class="dz-cart-count-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="dz-hero-slider">
+            <div class="dz-hero-content">
+                <span class="dz-hero-subtitle">NEW ARRIVALS 2026</span>
+                <h1 class="dz-hero-title">Crafting Premium Fabrics for Generations</h1>
+                <p class="dz-hero-text">Discover luxury Gents suitings, unstitched lawn 3-piece sets, and seasonal festive collections by Daud Fabrics.</p>
+                <div class="dz-hero-btn-group">
+                    <a href="gents.html" class="dz-hero-btn-primary">Shop Gents Collection</a>
+                    <a href="womens.html" class="dz-hero-btn-secondary">Shop Women's Lawn</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dz-values-bar">
+            <div class="dz-container dz-values-grid">
+                <div class="dz-value-item">
+                    <div class="dz-value-icon">🚚</div>
+                    <h4 class="dz-value-title">Nationwide Delivery</h4>
+                    <p class="dz-value-desc">Fast shipping within 2-4 working days</p>
+                </div>
+                <div class="dz-value-item">
+                    <div class="dz-value-icon">🛡️</div>
+                    <h4 class="dz-value-title">100% Authentic Fabric</h4>
+                    <p class="dz-value-desc">Guaranteed Daud Fabrics quality</p>
+                </div>
+                <div class="dz-value-item">
+                    <div class="dz-value-icon">💬</div>
+                    <h4 class="dz-value-title">WhatsApp Support</h4>
+                    <p class="dz-value-desc">Instant customer care assistance</p>
+                </div>
+                <div class="dz-value-item">
+                    <div class="dz-value-icon">🔄</div>
+                    <h4 class="dz-value-title">Easy Exchanges</h4>
+                    <p class="dz-value-desc">Hassle-free 7-day exchange policy</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="dz-container">
+            <section class="dz-banner-split">
+                <a href="gents.html" class="dz-split-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('images/gents_velvet_shawl.jpg');">
+                    <div class="dz-split-overlay"></div>
+                    <div class="dz-split-content">
+                        <span class="dz-split-subtitle">GENTS COLLECTION</span>
+                        <h2 class="dz-split-title">Royal Suitings & Dussa Shawls</h2>
+                        <span style="font-weight: 700; text-decoration: underline;">Explore Gents &rarr;</span>
+                    </div>
+                </a>
+
+                <a href="womens.html" class="dz-split-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('images/24_b8af8657-0cc4-40e8-b9c7-fe998a4ba02b_1.jpg');">
+                    <div class="dz-split-overlay"></div>
+                    <div class="dz-split-content">
+                        <span class="dz-split-subtitle">WOMEN'S LAWN</span>
+                        <h2 class="dz-split-title">Luxury Embroidered 3PC Sets</h2>
+                        <span style="font-weight: 700; text-decoration: underline;">Explore Women's &rarr;</span>
+                    </div>
+                </a>
+            </section>
+
+            <section style="margin-bottom: 60px;">
+                <div class="dz-section-header" style="display: flex; justify-content: space-between; align-items: flex-end; text-align: left;">
+                    <div>
+                        <h2 class="dz-section-title" style="margin:0;">Featured Gents Collection</h2>
+                        <p class="dz-section-subtitle" style="margin: 4px 0 0 0;">Wrinkle-resistant Wash & Wear, Royal Boski Silk, and Velvet Dussa Shawls.</p>
+                    </div>
+                    <a href="gents.html" style="font-weight: 700; color: var(--dz-accent); text-transform: uppercase; font-size: 0.9rem;">View All Gents &rarr;</a>
+                </div>
+
+                <div class="dz-product-grid" id="dzFeaturedGentsGrid">
+                    <!-- Rendered dynamically via js/products.js -->
+                </div>
+            </section>
+
+            <section style="margin-bottom: 60px;">
+                <div class="dz-section-header" style="display: flex; justify-content: space-between; align-items: flex-end; text-align: left;">
+                    <div>
+                        <h2 class="dz-section-title" style="margin:0;">Women's & Summer Lawn Edition</h2>
+                        <p class="dz-section-subtitle" style="margin: 4px 0 0 0;">Exquisite embroideries and breathable summer pastel prints.</p>
+                    </div>
+                    <a href="womens.html" style="font-weight: 700; color: var(--dz-accent); text-transform: uppercase; font-size: 0.9rem;">View Women's &rarr;</a>
+                </div>
+
+                <div class="dz-product-grid" id="dzFeaturedWomensGrid">
+                    <!-- Rendered dynamically via js/products.js -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer style="background: var(--dz-primary); color: #ffffff; padding: 60px 0 20px 0; margin-top: 60px;">
+        <div class="dz-container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="color: var(--dz-accent); font-size: 1.4rem; font-weight: 800; margin-top: 0;">DAUD FABRICS</h3>
+                    <p style="color: #a0aec0; font-size: 0.9rem; line-height: 1.6;">
+                        Daud Fabrics is your premier clothing destination for high quality unstitched lawn, luxury Gents suitings, and seasonal festive collections.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 0.9rem; color: #cbd5e0;">
+                        <li><a href="index.html" style="color: inherit;">Home</a></li>
+                        <li><a href="gents.html" style="color: inherit;">Gents Collection</a></li>
+                        <li><a href="womens.html" style="color: inherit;">Women's Collection</a></li>
+                        <li><a href="summer.html" style="color: inherit;">Summer Lawn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Customer Care</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 0.9rem; color: #cbd5e0;">
+                        <li><a href="contact.html" style="color: inherit;">Contact Us</a></li>
+                        <li><a href="cart.html" style="color: inherit;">My Shopping Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ffffff; font-size: 1rem; margin-top: 0;">Newsletter</h4>
+                    <p style="color: #a0aec0; font-size: 0.85rem;">Subscribe to get updates on new arrivals.</p>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="email" placeholder="Your email..." style="padding: 10px; border-radius: 4px; border: none; font-size: 0.9rem; flex-grow: 1;">
+                        <button style="background: var(--dz-accent); color: #fff; border: none; padding: 10px 16px; border-radius: 4px; font-weight: bold; cursor: pointer;">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #2d3748; padding-top: 20px; text-align: center; font-size: 0.85rem; color: #a0aec0;">
+                © 2026 <strong>Daud Fabrics</strong>. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        function toggleMobileNav() {
+            const menu=document.getElementById('dzNavMenu'); const btn=document.getElementById('dzResponsiveMenuToggle'); const open=menu.classList.toggle('show'); if(btn){btn.setAttribute('aria-expanded',String(open));btn.setAttribute('aria-label',open?'Close menu':'Open menu');}
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const gents = getProductsByCategory('Gents').slice(0, 4);
+            document.getElementById('dzFeaturedGentsGrid').innerHTML = gents.map(p => createProductCardHTML(p)).join('');
+
+            const womensAndSummer = getAllProducts().filter(p => p.category !== 'Gents').slice(0, 4);
+            document.getElementById('dzFeaturedWomensGrid').innerHTML = womensAndSummer.map(p => createProductCardHTML(p)).join('');
+        });
+    </script>
+</body>
+</html>
