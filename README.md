@@ -149,6 +149,9 @@ The admin dashboard is protected entirely on the server — no admin credentials
 *(Add screenshots of your homepage, product page, and admin dashboard here)*
 
 </div>
+<img width="1795" height="817" alt="image" src="https://github.com/user-attachments/assets/0e7d2774-4bc9-4025-87ba-bf6e19881a10" />
+<img width="1886" height="827" alt="image" src="https://github.com/user-attachments/assets/cf8ad05b-0384-4e59-9901-8d18469f0383" />
+<img width="1802" height="890" alt="image" src="https://github.com/user-attachments/assets/40591f64-0c3d-407d-bd22-b95ff628a0a7" />
 
 ---
 
