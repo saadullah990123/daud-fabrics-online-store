@@ -161,7 +161,33 @@ function createProductCardHTML(product) {
         </div>
     `;
 }
+function addRecentlyViewed(productId) {
+    if (!productId) return;
+    let viewed = JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || '[]');
+    // Remove if already exists, then add to front
+    viewed = viewed.filter(id => id !== productId);
+    viewed.unshift(productId);
+    // Keep only the last 8
+    viewed = viewed.slice(0, 8);
+    localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(viewed));
+}
 
+function renderRecentlyViewed() {
+    const container = document.getElementById('dz-recently-viewed-grid');
+    if (!container) return;
+
+    const viewedIds = JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || '[]');
+    const products = viewedIds
+        .map(id => getProductById(id))
+        .filter(p => p !== null);
+
+    if (products.length === 0) {
+        container.innerHTML = '<p style="color: var(--dz-secondary);">No recently viewed items yet.</p>';
+        return;
+    }
+
+    container.innerHTML = products.map(p => createProductCardHTML(p)).join('');
+}
 /* ============================================================================
    INTERACTIVE LIVE SEARCH ENGINE (Multi-word search & Modal Controller)
    ============================================================================ */
