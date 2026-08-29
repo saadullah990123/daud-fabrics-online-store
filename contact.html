@@ -104,6 +104,25 @@
                 display: flex;
             }
         }
+        .dz-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 600px) {
+    .dz-footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 900px) {
+    .dz-footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 40px;
+    }
+}
     </style>
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -157,8 +176,7 @@
             <h1 class="dz-section-title">Contact Daud Fabrics</h1>
             <p class="dz-section-subtitle">We are here to assist you with your orders, custom inquiries, and questions.</p>
         </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1000px; margin: 40px auto 0 auto;">
+<div class="dz-contact-grid">
             <div style="background: var(--dz-light-bg); border-radius: 8px; padding: 32px; border: 1px solid var(--dz-border);">
                 <h3 style="margin-top: 0; color: var(--dz-primary); font-size: 1.3rem;">Get In Touch</h3>
                 <p style="color: var(--dz-secondary); line-height: 1.6; margin-bottom: 24px;">
